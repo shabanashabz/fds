@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  text-transform: capitalize;
+}
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;500;600;800&display=swap);
+
+body {
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.container {
+  background-color: #ededed;
+  /* width: 992px;
+  height: 80vh; */
+  padding: 50px 100px;
+  border-radius: 5px;
+}
+
+.filter {
+  width: 100%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.filter input::after {
+  content: attr([]);
+}
+.filter input {
+  width: 40%;
+  padding: 10px 20px;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #fff;
+  color: #000;
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 10%), 0 0 10px rgb(0 0 0 / 10%);
+}
+
+input:focus {
+  border-color: #fff;
+  outline: none;
+}
+
+.filter button {
+  width: 15%;
+  background-color: #1e2a41;
+  border: 1px solid #111d32;
+  color: #000;
+  cursor: pointer;
+  font-weight: 500;
+}
+.filter button:hover {
+  background-color: #111d32;
+}
+
+table {
+  color: #000;
+  width: 100%;
+}
+
+table th,
+table td {
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 14px;
+}
+table tr {
+  background-color: #fff;
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 10%), 0 0 10px rgb(0 0 0 / 10%);
+}
+table tr:hover {
+  background-color: rgb(201, 201, 201);
+}
+
+table tr th:first-of-type,
+table tr td:first-of-type {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+table .prioirty-200 td:first-of-type {
+  border-left: 4px solid #f3ad70;
+}
+
+table .prioirty-300 td:first-of-type {
+  border-left: 4px solid #6fb39e;
+}
+
+table .prioirty-600 td:first-of-type {
+  border-left: 4px solid #497cc8;
+}
+table .prioirty-200 .fa-circle {
+  color: #f3ad70;
+  margin-right: 10px;
+  transform: scale(0.5);
+}
+
+table .prioirty-300 .fa-circle {
+  color: #6fb39e;
+  margin-right: 10px;
+  transform: scale(0.5);
+}
+
+table .prioirty-600 .fa-circle {
+  color: #497cc8;
+  margin-right: 10px;
+  transform: scale(0.5);
+}
+table tr td button {
+  background-color: #162237;
+  color: #99a5bd;
+  outline: none;
+  border: none;
+  visibility: hidden;
+  cursor: pointer;
+}
+table tr:hover .fa-trash {
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 50px 20px;
+  }
+  table th:nth-of-type(3),
+  table td:nth-of-type(3) {
+    display: none;
+  }
+  .fa-trash {
+    visibility: visible;
+  }
+}
