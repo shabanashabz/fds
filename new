@@ -4,9 +4,9 @@ $eml="select * from registration where email_id='$email_id'";
         $result = mysqli_query($db,$eml);
 
 
+       
 
-
-        <?php 
+        <?php
 session_start();
 echo  $_SESSION['name']=$name;
 echo  $_SESSION['email_id']=$email;
