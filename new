@@ -5,7 +5,7 @@ $eml="select * from registration where email_id='$email_id'";
 
 
        
-
+<!-- check -->
         <?php
 session_start();
 echo  $_SESSION['name']=$name;
