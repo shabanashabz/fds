@@ -1,0 +1,36 @@
+.navbar {
+    list-style-type: none;
+    margin: 0px;
+    padding:0%;
+    overflow: hidden;
+      width:100%;
+    position:fixed;
+    background:rgb(0,0,0,.4);
+    height:50px;
+     padding-top:20px;
+  
+  }
+  .menu-items
+   {
+  
+    float:left;
+    display:inline;
+    padding-left:25%;
+  }
+  
+  .menu-items a {
+  
+    color: blue;
+   font-size:20px;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  .menu-items a{
+  color: white;
+  }
+  .menu-items a:hover {
+    background-color: orange;
+    color: white;
+    border-radius:5px;
+  }

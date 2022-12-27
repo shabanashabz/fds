@@ -1,0 +1,210 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  background: white;
+}
+.rate {
+  float: left;
+  height: 46px;
+
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-left: 500px;
+  margin-top: 100px;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate label {
+  float: right;
+  width: 2em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+
+input[type="radio" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 3px 3px 0px 5px;
+  padding: initial;
+  border: initial;
+}
+.rate label:before {
+  content: "★ ";
+}
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+button {
+  color: white;
+  border-color: rgb(20, 12, 12);
+  background-color: #9d598c;
+  width: 100px;
+  height: 40px;
+  margin-left: 80px;
+  border-radius: 5px;
+  font-family: ui-rounded;
+  font-size: 25px;
+}
+button:hover {
+  background: rgb(6, 5, 14);
+  font-size: 27px;
+}
+.rate a {
+  color: white;
+  border-color: white;
+  background-color: #849ba5;
+  width: 200px;
+  height: 60px;
+  margin-left: 75px;
+  border-radius: 2px;
+  font-family: ui-rounded;
+  font-size: 20px;
+  text-decoration: none;
+}
+.rate a:hover {
+  color: white;
+  border-color: white;
+  background-color: white;
+}
+p {
+  color: rgb(6, 6, 5);
+  width: 100px;
+  height: 100px;
+  margin-left: 560px;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: ui-rounded;
+  font-size: 20px;
+  text-align: center;
+} */
+
+
+*{
+  margin: 0;
+  padding: 0;
+  background:black;
+
+
+}
+.rate {
+  float: left;
+  height: 46px;
+
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-left:500px;
+    margin-top:100px;
+
+
+
+
+
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate label {
+  float:right;
+  width:2em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+
+input[type="radio" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 3px 3px 0px 5px;
+  padding: initial;
+  border: initial;
+
+}
+.rate label:before {
+  content: '★ ';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+button {
+  color: black;
+  border-color: white;
+  background-color: #8b8eae;
+  width: 100px;
+  height: 40px;
+margin-left:80px;
+  border-radius: 5px;
+  font-family: ui-rounded;
+  font-size: 25px;
+
+}
+button:hover{
+background:grey;
+font-size: 27px;
+}
+.rate a {
+  color: black;
+  border-color: white;
+  background-color: #849ba5;
+  width: 200px;
+  height: 60px;
+  margin-left: 75px;
+  border-radius: 2px;
+  font-family: ui-rounded;
+  font-size: 20px;
+  text-decoration: none;
+}
+.rate a:hover{
+  color: white;
+      border-color: white;
+      background-color: black;
+}
+/* p
+{
+color: gold;
+  width: 100px;
+  height: 40px;
+  margin-left: 560px;
+  border-radius: 5px;
+  padding:20px;
+  font-family: ui-rounded;
+  font-size: 50px;
+  text-align:center;
+
+} */
+

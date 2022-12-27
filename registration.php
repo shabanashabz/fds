@@ -17,20 +17,40 @@ if (isset($_POST["btn"])) {
         $file = "uploads/";
         $file_name = "license_" . time() . "." . $temptype;
         $up = move_uploaded_file($temp, $file . $file_name);
+
         if ($up) {
             $sql = "INSERT INTO registration (name,password,email_id,phn_number,type,license)VALUES('$name','$password','$email_id','$phn_number','$type','$file_name')";
             $result = $db->query($sql);
-
-            if ($result) {
-                echo "successfully created";
-            } else {
-                echo "error something went wrong ";
-            }
-        } else {
-            echo "file not uploaded ";
         }
-    } else {
+         else
+         {
+            echo "file not uploaded ";
+         }
+    }
+     else
+    {
         echo "already registered";
+     }
+    if (isset($_POST["btn"])) {
+        $email_id = $_POST["email_id"];
+        $password = $_POST["password"];
+
+        $eml = "select * from registration where email_id='$email_id' AND password='$password'";
+        $result = mysqli_query($db, $eml);
+        $error = '';
+        if (mysqli_num_rows($result) == 1) {
+            $user = mysqli_fetch_array($result);
+
+            $_SESSION['id'] = base64_encode($user['reg_id']);
+            if ($user['type'] == "organization") {
+                header("location:organisation.php");
+            } else {
+                header("location:eventmanagement.php");
+            }
+            $error = '';
+        } else {
+            $error = "invalid email or password";
+        }
     }
 
 }
@@ -42,9 +62,15 @@ if (isset($_POST["btn"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href="style.css" />
-    <title>Form Validator</title>
+    <title>Registration/fds</title>
     <link rel="stylesheet" href="./static/css/registration.css" />
-    <link rel="stylesheet" href="./static/css/navbar.css" />
+    <link rel="stylesheet" href="./static/css/navbar4.css" />
+    <style>
+         .navbar .menu-items{
+          box-shadow: rgba(255, 255, 255, 0.5);
+          width: 200px;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,12 +94,13 @@ if (isset($_POST["btn"])) {
         </div>
       </div>
     </nav>
+    <form action="registration.php" method="POST" enctype="multipart/form-data">
     <div class="container">
         <div class="column1">
             <form id="form" class="form">
                 <h2>Register with us</h2>
                 <div class="form-control">
-                    <label for='username'>Username</label>
+                    <label for='username' data-validate="Enter email">Username</label>
                     <input type="text" id="username" placeholder="Enter username" name="name">
                     <small>Error message</small>
                 </div>
@@ -106,14 +133,18 @@ if (isset($_POST["btn"])) {
             </select>
                 <small>Error message</small>
                 </div>
-                <button type="submit" name="btn">Submit</button><br><br>
+
+                <div class="login-box">
+                <button type="submit" name="btn">Submit</a></button><br><br>
+                </div>
                 <div class="login">
                 <h3>Have an account ?</h3>
-                <button type="submit" name="btn"><a href="login.php">Login</a></button>
+                <a href="login.php">Login</a>
                 </div>
 
             </form>
         </div>
+        </form>
         <div class="column2">
 
           <img src="https://i.ibb.co/k5NNz4F/pablo-sign-up.png" alt="pablo-sign-up" border="0" class='signup-image'>
@@ -122,5 +153,6 @@ if (isset($_POST["btn"])) {
     </div>
     <script src="./static/js/registration.js"></script>
 </body>
+
 
 </html>
