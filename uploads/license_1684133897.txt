@@ -1,0 +1,429 @@
+--Two way chat Server--
+
+import java.net.*;
+import java.io.*;
+public class twoWayServer{
+	public static void main(String args[]) throws Exception,UnknownHostException{
+		ServerSocket ss = new ServerSocket(8088);
+		Socket s = ss.accept();
+		DataInputStream din = new DataInputStream(s.getInputStream());
+		DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str="",str2="";
+		while(str != "stop"){
+			System.out.println("Waiting for Client's replay : ");
+			str = din.readUTF();
+			System.out.println("Client : "+str);
+			System.out.println("Enter Message : ");
+			str2 = br.readLine();
+			dout.writeUTF(str2);
+			dout.flush();
+		}
+		din.close();
+		dout.close();
+		s.close();
+		ss.close();
+	}
+}
+
+---Two way chat client---
+
+import java.net.*;
+import java.io.*;
+public class twoWayClient{
+	public static void main(String args[])throws Exception,UnknownHostException{
+		Socket s = new Socket("127.0.0.1", 8088);
+		DataInputStream din = new DataInputStream(s.getInputStream());
+		DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str="", str2 = "";
+		while(str != "stop"){
+			System.out.println("\n Enter Response : ");
+			str = br.readLine();
+			dout.writeUTF(str);
+			dout.flush();
+			System.out.println("Working for server's replay...");
+			str2 = din.readUTF();
+			System.out.println("Server says : "+str2);
+		}
+		dout.close();
+		din.close();
+		s.close();
+	}
+}
+
+
+--Echo Server--
+
+import java.io.*;
+import java.net.*;
+public class echoServer{
+	public static void main(String args[]) throws Exception{
+		ServerSocket ss = new ServerSocket(8000);
+		Socket s = ss.accept();
+		DataInputStream din = new DataInputStream(s.getInputStream());
+		DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+		BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
+		String str = "", str2 = "";
+		System.out.println("Client connected");
+		while(str != "stop"){
+		
+		}
+		s.close();
+		ss.close();
+	}
+}
+
+---Echo client---
+
+import java.io.*;
+import java.net.*;
+public class echoClient{
+	public static void main(String args[]) throws Exception{
+		Socket s = new Socket("127.0.0.1",8000);
+		DataInputStream din = new DataInputStream(s.getInputStream());
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str="", str2="";
+		while(str != "stop"){
+			System.out.println("Enter Response: ");
+			str2 = br.readLine();
+			System.out.println(str2);
+		}
+		s.close();
+	}
+}
+
+
+//Bankers
+
+#include<stdio.h>
+void main()
+{   //Here we need 3 arrays namely Allocation, Max and Available
+    // arrays alloc and max are 2D arrays. array 'available' is a 1D array.
+    int n, m, i, j, k, alloc[20][20], max[20][20], available[20];
+    int f[20],ans[20], ind=0, need[20][20]; //We need the Need matrix.
+   
+    //Reading the number of Processes from the input.
+    printf("Enter number of processes: ");
+    scanf("%d",&n);
+   
+    //Reading the number of Resources from the input.
+    printf("Enter the number of Resources: ");
+    scanf("%d",&m);
+   
+    //Reading the Allocation Values to the Matrix 'alloc[][]'
+    printf("Enter the Values of Allocation Matrix: \n");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            printf("Enter value at position (%d%d) :",i+1,j+1);
+            scanf("%d",&alloc[i][j]);
+        }
+    }
+   
+    //Reading the Max values to the matrix 'max[][]'
+        printf("Enter the Values of Max Matrix: \n");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            printf("Enter value at position (%d%d) :",i+1,j+1);
+            scanf("%d",&max[i][j]);
+        }
+    }
+   
+    //Reading the values of array available[]
+    printf("Enter the values in available: \n");
+    for(j=0;j<m;j++)
+    {
+        printf("Enter value at position (%d) :",j+1);
+        scanf("%d",&available[j]);
+    }
+   
+    //We are using an array f to represent the finished status of each process.
+    //Initially setting all processes as not finished. ie. Setting f[i]=0 for each process i.
+    for(k=0;k<n;k++)
+    {
+        f[k]=0;
+    }
+   
+    //Calculating values of the NEED MATRIX using its equation, for all processes
+    //Equation is need[i][j] = max[i][j] - allocation[i][j]
+    for(i=0;i<n;i++)    //For each process
+    {
+        for(j=0;j<m;j++)    //For each resource
+        {
+            need[i][j] = max[i][j] - alloc[i][j];
+        }
+    }
+   
+    //Finding safe sequence
+    int y=0;
+// ans[] array will be used to store the SAFE SEQUENCE in the end.
+    for(k=0;k<n;k++)    
+    {
+        for(i=0;i<n;i++)    //For each process
+        {
+            if(f[i]==0)    
+            {
+                int flag = 0;   //setting flag as 0 or false.
+                for(j=0;j<m;j++)    //For each Resource
+                {
+                    if(need[i][j] > available[j])    //If Need greater than Available, then
+                    {
+                        flag=1; //Setting flag as true or 1.
+                        //flag=1 means the Need is greater than what is Available for that particular resource.
+                        break; //Breaking out of this loop if need > available
+                    }
+                }
+               
+                if(flag==0)
+                {
+                    ans[ind++] = i;
+                    for(y=0;y<m;y++)    //For each Resource
+                    {
+                        available[y] = available[y] + alloc[i][y];  //Setting availability to current availability + allocation
+                    }
+                    f[i]=1; //Declaring the current process as FINISHED.
+                }
+            }
+        }
+    }
+   
+   //Displaying the SAFE SEQUENCE.
+    printf("The SAFE SEQUENCE is: \n");
+    for(i=0;i<n-1;i++)  //Here loop ends at n-1 because we don't want to printf the arrowmark(->) at the end.printf(" P%d", answer[n-1)
+    {
+        printf(" P%d ->", ans[i]);
+    }
+    printf(" P%d", ans[n-1]);    //Printing the final state in safe sequence without printing the arrowmark.
+
+}
+
+
+FCFS
+
+/*
+ * FCFS Scheduling Program in C
+ */
+ 
+#include <stdio.h>
+int main()
+{
+    int pid[15];
+    int bt[15];
+    int n;
+    printf("Enter the number of processes: ");
+    scanf("%d",&n);
+ 
+    printf("Enter process id of all the processes: ");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&pid[i]);
+    }
+ 
+    printf("Enter burst time of all the processes: ");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&bt[i]);
+    }
+ 
+    int i, wt[n];
+    wt[0]=0;
+ 
+    //for calculating waiting time of each process
+    for(i=1; i<n; i++)
+    {
+        wt[i]= bt[i-1]+ wt[i-1];
+    }
+ 
+    printf("Process ID     Burst Time     Waiting Time     TurnAround Time\n");
+    float twt=0.0;
+    float tat= 0.0;
+    for(i=0; i<n; i++)
+    {
+        printf("%d\t\t", pid[i]);
+        printf("%d\t\t", bt[i]);
+        printf("%d\t\t", wt[i]);
+ 
+        //calculating and printing turnaround time of each process
+        printf("%d\t\t", bt[i]+wt[i]);
+        printf("\n");
+ 
+        //for calculating total waiting time
+        twt += wt[i];
+ 
+        //for calculating total turnaround time
+        tat += (wt[i]+bt[i]);
+    }
+    float att,awt;
+ 
+    //for calculating average waiting time
+    awt = twt/n;
+ 
+    //for calculating average turnaround time
+    att = tat/n;
+    printf("Avg. waiting time= %f\n",awt);
+    printf("Avg. turnaround time= %f",att);
+}
+
+
+
+RR CPU
+
+
+
+#include<stdio.h>
+ 
+int main()
+{
+    //Input no of processed
+    int  n;
+    printf("Enter Total Number of Processes:");
+    scanf("%d", &n);
+    int wait_time = 0, ta_time = 0, arr_time[n], burst_time[n], temp_burst_time[n];
+    int x = n;
+ 
+    //Input details of processes
+    for(int i = 0; i < n; i++)
+    {
+        printf("Enter Details of Process %d \n", i + 1);
+        printf("Arrival Time:  ");
+        scanf("%d", &arr_time[i]);
+        printf("Burst Time:   ");
+        scanf("%d", &burst_time[i]);
+        temp_burst_time[i] = burst_time[i];
+    }
+ 
+    //Input time slot
+    int time_slot;
+    printf("Enter Time Slot:");
+    scanf("%d", &time_slot);
+ 
+    //Total indicates total time
+    //counter indicates which process is executed
+    int total = 0,  counter = 0,i;
+    printf("Process ID       Burst Time       Turnaround Time      Waiting Time\n");
+    for(total=0, i = 0; x!=0; )  
+    {  
+        // define the conditions
+        if(temp_burst_time[i] <= time_slot && temp_burst_time[i] > 0)    
+        {  
+            total = total + temp_burst_time[i];  
+            temp_burst_time[i] = 0;  
+            counter=1;  
+        }     
+        else if(temp_burst_time[i] > 0)  
+        {  
+            temp_burst_time[i] = temp_burst_time[i] - time_slot;  
+            total  += time_slot;    
+        }  
+        if(temp_burst_time[i]==0 && counter==1)  
+        {  
+            x--; //decrement the process no.  
+            printf("\nProcess No %d  \t\t %d\t\t\t\t %d\t\t\t %d", i+1, burst_time[i],
+                   total-arr_time[i], total-arr_time[i]-burst_time[i]);  
+            wait_time = wait_time+total-arr_time[i]-burst_time[i];  
+            ta_time += total -arr_time[i];  
+            counter =0;     
+        }  
+        if(i==n-1)  
+        {  
+            i=0;  
+        }  
+        else if(arr_time[i+1]<=total)  
+        {  
+            i++;  
+        }  
+        else  
+        {  
+            i=0;  
+        }  
+    }  
+    float average_wait_time = wait_time * 1.0 / n;
+    float average_turnaround_time = ta_time * 1.0 / n;
+    printf("\nAverage Waiting Time:%f", average_wait_time);
+    printf("\nAvg Turnaround Time:%f", average_turnaround_time);
+    return 0;
+}
+
+
+SJF 
+
+
+#include<stdio.h>
+int main(){
+    int limit,arrivalTime[10],burstTime[10],temp[10],smallest,time,count=0;
+    double waitingTime = 0,turnaroundTime = 0,end;
+    float avgwt , avgtat;
+    printf("Enter the number of processes : ");
+    scanf("%d",&limit);
+    printf("Enter the arrival time of the processes : ");
+    for(int i=0;i<limit;i++){
+        scanf("%d",&arrivalTime[i]);
+    }
+    printf("Enter burst time of the processes : ");
+    for(int i=0;i<limit;i++){
+        scanf("%d",&burstTime[i]);
+        temp[i] = burstTime[i];
+    }
+    burstTime[9] = 9999;
+    for(time = 0; count != limit; time++){
+        smallest = 9;
+        for(int i = 0;i<limit;i++){
+            if(arrivalTime[i] <= time && burstTime[i] < burstTime[smallest] && burstTime[i] > 0){
+                smallest = i;
+            }
+        }
+        burstTime[smallest]--;
+        if(burstTime[smallest] == 0){
+            count++;
+            end = time + 1;
+            waitingTime = waitingTime + end - arrivalTime[smallest] - temp[smallest];
+            turnaroundTime = turnaroundTime + end - arrivalTime[smallest];
+        }
+    }
+    avgtat = turnaroundTime / limit;
+    avgwt = waitingTime / limit;
+    printf("Average turnaround time : %f\nAverage waiting time : %f",avgtat,avgwt);
+
+}
+
+
+
+
+//Alternate SJF
+
+#include<stdio.h>
+
+int main() {
+  int time, bt[10], at[10], sum_burst_time = 0, smallest, n, i;
+  int sumt = 0, sumw = 0;
+  printf("enter the no of processes : ");
+  scanf("%d", & n);
+  for (i = 0; i < n; i++) {
+    printf("the arrival time for process P%d : ", i + 1);
+    scanf("%d", & at[i]);
+    printf("the burst time for process P%d : ", i + 1);
+    scanf("%d", & bt[i]);
+    sum_burst_time += bt[i];
+  }
+  bt[9] = 9999;
+  for (time = 0; time < sum_burst_time;) {
+    smallest = 9;
+    for (i = 0; i < n; i++) {
+      if (at[i] <= time && bt[i] > 0 && bt[i] < bt[smallest])
+        smallest = i;
+    }
+    printf("P[%d]\t|\t%d\t|\t%d\n", smallest + 1, time + bt[smallest] - at[smallest], time - at[smallest]);
+    sumt += time + bt[smallest] - at[smallest];
+    sumw += time - at[smallest];
+    time += bt[smallest];   
+    bt[smallest] = 0;
+  }
+  printf("\n\n average waiting time = %f", sumw * 1.0 / n);
+  printf("\n\n average turnaround time = %f", sumt * 1.0 / n);
+  return 0;
+}
+

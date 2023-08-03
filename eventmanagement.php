@@ -132,7 +132,7 @@ if (mysqli_num_rows($result1) > 0) {
         <label>license : </label>
         <input type="file" placeholder="attach file" name="license" ><br><br>
         <button type="submit" name="btn"><?php if ($is_edit == true) {
-    echo "Edit";
+    echo "Update";
 } else {
     echo "Submit";
 }

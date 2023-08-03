@@ -1,7 +1,7 @@
 <?php
 include "db.php";
 if (!isset($_SESSION['id'])) {
-    header("location:indexhome.php");
+    header("location:login.php");
 }
 $getid = $_SESSION['id'];
 $decoded = base64_decode($getid);

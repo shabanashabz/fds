@@ -78,9 +78,9 @@
 
         <div  class="card">
             <div class="circle-container">
-                <h1 style="color:#fff;">F</h1>
+                <h1 style="color:#fff;">A</h1>
             </div>
-            <h2>Fathima NK</h2>
+            <h2>ALFAS</h2>
             <h4>Technical Lead</h4>
             <p></p>
         </div>
@@ -89,9 +89,9 @@
 
         <div class="card">
             <div class="circle-container">
-                <h1 style="color:#fff;">S</h1>
+                <h1 style="color:#fff;">A</h1>
             </div>
-            <h2>Shabana K M</h2>
+            <h2>AMITHAB</h2>
             <h4>Technical Lead</h4>
             <p></p>
         </div>
@@ -100,9 +100,9 @@
 
         <div class="card">
             <div class="circle-container">
-                <h1 style="color:#fff;">M</h1>
+                <h1 style="color:#fff;">R</h1>
             </div>
-            <h2>MUHAMMED ASHIK A</h2>
+            <h2>RIFAYI</h2>
             <h4>Technical Lead</h4>
             <p></p>
         </div>
@@ -111,9 +111,9 @@
 
         <div class="card">
             <div class="circle-container">
-                <h1 style="color:#fff;">S</h1>
+                <h1 style="color:#fff;">A</h1>
             </div>
-            <h2>SHAMEEMUL HAQUE P</h2>
+            <h2>ABHIRAM</h2>
             <h4>Technical lead</h4>
             <p></p>
         </div>
@@ -122,8 +122,8 @@
             <div class="circle-container">
                 <h1 style="color:#fff;">A</h1>
             </div>
-            <h2>Abhijith K M</h2>
-            <h4> Advisor</h4>
+            <h2>ANISH ABRAHAM</h2>
+            <h4> Advisor </h4>
             <p></p>
         </div>
 
@@ -131,10 +131,10 @@
 
         <div class="card">
             <div class="circle-container">
-                <h1 style="color:#fff;">S</h1>
+                <h1 style="color:#fff;">R</h1>
             </div>
-            <h2>Asha Ali</h2>
-            <h4> Advisor</h4>
+            <h2>REENA</h2>
+            <h4> HOD</h4>
             <p></p>
         </div>
 

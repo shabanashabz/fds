@@ -147,7 +147,7 @@ if (mysqli_num_rows($result1) > 0) {
         <input id="location_autocomplete" type="text" value="<?php echo $details1 != null ? $details1['location'] : ''; ?>" placeholder="Enter location " name="location" required><br><br>
         <label>license   </label>
         <input type="file" placeholder="attach file" name="license" ><br><br>
-        <button type="submit" name="btn"><?php echo $is_edit ? 'Edit' : 'Submit' ?></button>
+        <button type="submit" name="btn"><?php echo $is_edit ? 'Update' : 'Submit' ?></button>
       </div>
     </form>
     <div class="column2">
